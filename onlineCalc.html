@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <style type="text/css">
+         *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .wrapper{
+            margin: 5px 100px;
+        }
+        .header{
+            text-align: center;
+            padding: 30px;
+            text-shadow: 4px 4px 2px rgba(121,7,7,0.6);
+        }
+        .nav>ul{
+            background-color: black;
+            list-style: none;
+        }
+        .nav>ul>li{
+            display: inline-block;
+            padding: 10px;
+        }
+        .nav>ul>li>a{
+            text-decoration: none;
+            color: rgb(227, 243, 227);
+        }
+        .nav>ul>li>a:hover{
+            background-color: hsl(249, 87%, 39%);
+        }
+        .content{
+            background:linear-gradient(to right,#e91,#3f51b3);
+            width: 1000px;
+            height: 600px;
+            margin: 20px auto;
+        }
+        .calc{
+            top: 10px;
+            background-color:black;
+            width: 400px;
+            height: 540px;
+            position: relative;
+            left: 250px;
+            box-shadow: 29px 20px 5px 0px rgba(18, 2, 2, 0.75);
+            -webkit-box-shadow: 29px 20px 5px 0px rgba(18,2,2,0.75);
+            -moz-box-shadow: 29px 20px 5px 0px rgba(18,2,2,0.75);
+        }
+        .result{
+            background-color: rgb(140, 94, 247);
+            height: 120px;
+        }
+        .result>input{
+            text-align: right;
+            padding-top: 35px;
+            font-size:35.5px;
+            color: black;
+        }
+        @media only screen and (max-width:768px) {
+        .content{
+            background-color: orangered;
+            height: 650px;
+        }
+        .calc{
+            background-color: black;
+            width: 350px;
+            height: 600px;
+            position: relative;
+            left: 100px;
+            max-width: 100%;
+            box-shadow: 29px 20px 5px 0px rgba(18,2,2,0.75);
+        -webkit-box-shadow: 29px 20px 5px 0px rgba(18,2,2,0.75);
+        -moz-box-shadow: 29px 20px 5px 0px rgba(18,2,2,0.75);
+        }
+        .result{
+            background-color: #391d9e;
+            height: 120px;
+            width: 350px;
+        }
+        .result>input{
+            text-align: right;
+            padding-top: 35px;
+            font-size:30.2px;
+            color: red;
+        }
+        
+        
+ }
+        .keyboard{
+            height:400px ;
+        }
+        #element,#operator{
+            height: 50px;
+            width: 50px;
+            margin: 17px;
+            border-style: none;
+            float: left;
+            border-radius: 20px;
+            font-size:25px ;
+            cursor: pointer;
+        }
+        #operator:hover{
+            background-color: olivedrab;
+        }
+        .footer{
+            background-color: lawngreen;
+            color: black;
+            text-align: center;
+        }
+    </style>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <h1><i>Online Calculator</i></h1>
+            </header>
+        <nav class="nav " >
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active"  href='home.html'>Digital Clock</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="online.html">Simple Calculator</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Age Calculator</a>
+                </li>
+              </ul>
+        </nav>
+        <div class="content" >
+            <div class="calc">
+                <div class="result">
+                       <input type="text" id="edu"> 
+                </div>
+                <div class="keyboard">
+                    <button id="operator" type="button" class="btn btn-danger" onclick="clr()">C</button>
+                    <button id="operator" type="button" class="btn btn-danger" onclick="BackSpace()">CS</button>
+                    <button id="operator" type="button" class="btn btn-danger" onclick="dis('%')">%</button>
+                    <button id="operator" type="button" class="btn btn-danger" onclick="dis('/')">/</button>
+                    <button id="element" type="button" class="btn btn-outline-warning"onclick="dis(7)" >7</button>
+                    <button id="element" type="button" class="btn btn-outline-warning" onclick="dis(8)" >8</button>
+                    <button id="element" type="button" class="btn btn-outline-warning"onclick="dis(9)">9</button>
+                    <button id="operator" type="button" class="btn btn-danger"onclick="dis('*')">*</button>
+                    <button id="element" type="button" class="btn btn-outline-warning"onclick="dis(4)">4</button>
+                    <button id="element" type="button" class="btn btn-outline-warning"onclick="dis(5)" >5</button>
+                    <button id="element" type="button" class="btn btn-outline-warning"onclick="dis(6)">6</button>
+                    <button id="operator" type="button" class="btn btn-danger"onclick="dis('+')">+</button>
+                    <button id="element" type="button" class="btn btn-outline-warning"onclick="dis(1)">1</button>
+                    <button id="element" type="button" class="btn btn-outline-warning"onclick="dis(2)">2</button>
+                    <button id="element" type="button" class="btn btn-outline-warning"onclick="dis(3)">3</button>
+                    <button id="operator" type="button" class="btn btn-danger"onclick="dis('-')">-</button>
+                    <button id="element" type="button" class="btn btn-outline-warning"onclick="dis('00')">00</button>
+                    <button id="element" type="button" class="btn btn-outline-warning"onclick="dis(0)">0</button>
+                    <button id="element" type="button" class="btn btn-outline-warning"onclick="dis('.')">.</button>
+                    <button id="operator" type="button" class="btn btn-danger" onclick="solve()">=</button>
+                </div>
+            </div>
+        </div>
+        <footer class="footer"><strong>RajanSah&#169;2021-1-1</strong></footer>
+    </div>
+    <script type="text/javascript">
+        //function for displaying values
+            function dis(val)
+            {
+            document.getElementById("edu").value+=val
+            }
+            //function for evaluation
+            function solve()
+            {
+            let x = document.getElementById("edu").value
+            let y = eval(x)
+            document.getElementById("edu").value = y
+            }
+            //function for clearing the display
+            function clr()
+            {
+            document.getElementById("edu").value = ""
+            }
+            //function for backspace
+            function BackSpace()
+            {
+                const inputArray=document.getElementById("edu").value.split('');
+                inputArray.pop();
+                document.getElementById('edu').value=inputArray.join('');
+            }
+    </script>
+    <script defer src="https://friconix.com/cdn/friconix.js"> </script>
+</body>
+</html>

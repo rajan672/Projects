@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: #ffdd00;
+        }
+        .container{
+            height: 400px;
+            width: 400px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 50%;
+            box-shadow: 15px 15px 30px #665800, -15px -15px 30px #ffff00 ;
+        }
+        .clock{
+            height: 350px;
+            width: 350px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 50%;
+            background: url(img/clock.png);
+            background-size: cover;
+            box-shadow:inset 15px 15px 30px #665800,inset -15px -15px 30px #ffff00 ;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hr{
+            height: 150px;
+            width: 150px;
+        }
+        .min{
+            height: 200px;
+            width: 200px;
+        }
+        .sec{
+            height: 250px;
+            width: 250px;
+        }
+        .hr,.min,.sec{
+            position: absolute;
+            display: flex;
+            justify-content: center;
+        }
+        .clock::before{
+            content: '';
+            height: 15px;
+            width: 15px;
+            background-color: black;
+            border-radius: 50%;
+            border: 4px solid #ffdd00;
+        }
+        .hr::before{
+            position: absolute;
+            content: '';
+            height: 70px;
+            width: 8px;
+            background-color: brown;
+            z-index: 10;
+            border-radius: 50%;
+        }
+        .min::before{
+            position: absolute;
+            content: '';
+            height: 100px;
+            width: 5px;
+            background-color: black;
+            z-index: 11;
+            border-radius: 50%;
+        }
+        .sec::before{
+            position: absolute;
+            content: '';
+            height: 150px;
+            width: 2px;
+            background-color: rgb(132, 6, 250);
+            z-index: 12;
+            border-radius: 50%;
+        }
+        .footer{
+            padding-top: 10px;
+            margin-top: 600px;
+            background-color: lawngreen;
+            color: black;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="clock">
+            <div class="hr" id="hr"></div>
+            <div class="min" id="min"></div>
+            <div class="sec" id="sec"></div>
+        </div>
+    </div>
+    <footer class="footer"><strong>RajanSah&#169;jan/29/2021</strong></footer>
+    <script>
+        var hour=document.getElementById('hr');
+        var minute=document.getElementById('min');
+        var second=document.getElementById('sec');
+        setInterval(()=>{
+            var now=new Date();
+            //console.log(now)
+            let hr=now.getHours()*30;
+            //hr %=12;
+            //console.log(hr)
+            let min=now.getMinutes()*6;
+            //console.log(min)
+            let sec=now.getSeconds()*6;
+            //console.log(sec)
+
+            hour.style.transform=`rotateZ(${(hr)+(min/12)}deg)`;
+            //console.log(hour)
+            minute.style.transform=`rotateZ(${(min)}deg)`;
+            //console.log(minute)
+            second.style.transform=`rotateZ(${(sec)}deg)`;
+           // console.log(second)
+        });
+    </script>
+</body>
+</html>

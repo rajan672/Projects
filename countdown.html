@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Potta+One&display=swap" rel="stylesheet">
+    <style>
+        *{
+            margin: 0;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        .main{
+            background-color: #f3f3;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            padding: 10px;
+            text-align: center;
+            border: 2px solid #999;
+            box-shadow: 0 0 5px 3px rebeccapurple;
+            border-radius: 10px;
+            font-family:' Potta One', cursive;
+            text-align: center;
+        }
+        .main:hover{
+            box-shadow: 0 0 5px rebeccapurple;
+            background-color: rebeccapurple;
+        }
+        .info{
+            font-size: 30px;
+            padding: 5px;
+            margin: 10px;
+        }
+        .dhms{
+            font-size: 10px;
+        }
+        td{
+            background-color: rgb(238, 115, 207);
+            padding: 5px;
+            border-radius: 3px;
+        }
+        .footer{
+            padding-top: 10px;
+            margin-top: 600px;
+            background-color: lawngreen;
+            color: black;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <table class="main">
+            <tr class="info">
+                <td colspan="4" id="raj">Happy Birthday</td>
+            </tr>
+            <tr class="info">
+                <td id="days">__</td>
+                <td id="hours">__</td>
+                <td id="minutes">__</td>
+                <td id="seconds">__</td>
+            </tr> 
+            <tr class="dhms">
+                <td>Days</td>
+                <td>Hours</td>
+                <td>Minutes</td>
+                <td>Seconds</td>
+            </tr>
+        </table>
+    </div>
+    <footer class="footer"><strong>RajanSah&#169;jan/27/2021</strong></footer>
+    <script>
+        // Set the date we're counting down to
+        var setdate= new Date('December 27, 2021 12:32:10').getTime();
+        //console.log(setdate);
+
+        // Update the count down every 1 second
+        var settim=setInterval(function (){
+
+            // Get today's date and time
+            var todaydate=new Date().getTime();
+            //console.log(todaydate);
+
+            // Find the distance between now and the count down date
+            var remtime=setdate-todaydate;
+            //console.log(remtime)
+
+            // Time calculations for days, hours, minutes and seconds
+            var seconds=Math.floor(remtime/1000);
+           // console.log(seconds)
+            var minutes=Math.floor(seconds/60);
+            //console.log(minutes);
+            var hours=Math.floor(minutes/60);
+            //console.log(hours);
+            var days=Math.floor(hours/24);
+
+            //setting the time formate
+            hours%=24;
+            minutes%=60;
+            seconds%=60;
+
+            // Display the result in the element with id="demo"
+            document.getElementById('days').innerHTML=days;
+            document.getElementById('hours').innerHTML=hours;
+            document.getElementById('minutes').innerHTML=minutes;
+            document.getElementById('seconds').innerHTML=seconds;
+
+            // If the count down is finished, write some text
+            if (remtime<=0){
+                clearInterval(settim);
+                document.getElementById('raj').innerHTML="HAPPY BIRTHDAY RAJAN SAH";
+            }
+        },1000);
+    </script>
+</body>
+</html>

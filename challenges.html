@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+            *{
+                padding: 0px;
+                margin: 0px;
+                box-sizing: border-box;
+            }
+            .container-1,.container-2,.container-3,.container-4{
+                border: 1px solid black;
+                padding-top: 10px;
+                width: 75%;
+                margin: 10px auto;
+                text-align: center;
+            }
+            .flex-box-container-1,.flex-box-container-2,.flex-box-container-3{
+                border: 1px solid black;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+            }
+            #flex-box-result{
+                align-items: center;
+            }
+            #j>img{
+                padding: 10px;
+                height: 250px;
+            }
+            #rock:hover,#paper:hover,#scissor:hover{
+                box-shadow: 0px 10px 50px rgba(37,50,233,1);
+            }
+            .flex-box-container-4{
+                border: 1px solid rgb(240, 13, 13);
+                font-size: 20px;
+                font-weight: bold ;
+                text-align: center;
+                background-color:brown ;
+                padding: 10px;
+            }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container-1">
+        <h1>Challenge 1 : Your Age in Days </h1>
+        <div class="flex-box-container-1">
+            <div>
+                 <button class="btn btn-primary" onclick="sho()">Click Here</button>
+            </div>
+            <div>
+                <button class="btn btn-danger" onclick="rese()">Reset</button>
+            </div>
+        </div>
+        <div class="flex-box-container-1">
+            <div id="flex-box-result">
+    
+            </div>
+        </div> 
+    </div>
+    <div class="container-2">
+        <h1>Challenge  2 :  Cat Generator</h1> 
+        <div class="flex-box-container-2">
+            <div>
+                <button class="btn btn-primary" onclick="gen()">Generate</button>
+            </div>
+            <div>
+                <button class="btn btn-danger" onclick="res()">Reset</button>
+            </div>
+        </div>
+        <div class="flex-box-container-2">
+            <div id="j">
+                
+            </div>
+        </div>
+    </div>
+    <div class="container-3">
+        <h1>Challenge  3 : Rock-Paper-Scissor</h1>
+        <div class="flex-box-container-3" id="imgge">
+            <img src="img\rock.png" alt="" id="rock"  height="200px" width="200px" onclick="game(this)">
+            <img src="img\paper.png" alt="" id="paper" height="200px" width="200px" onclick="game(this)">
+            <img src="img\scissors.png" alt="" id="scissor" height="200px" width="200px" onclick="game(this)">
+        </div>
+    </div>
+    <div class="container-4">
+        <h1>Challenge  4 : Loan Calculator</h1>
+        <hr style="border: 2px solid #000000;">
+        <div class="flex-box-container-4">
+            Amount(Rs.) :<input type="number" min="1" max="100000" placeholder="Enter  the amount" id="amount"><br>
+            Intrest(%) :<input type="number" min="0" max="100" placeholder="Enter  the intrest rate" id="intrest"><br>
+            Months to pay :<input type="number" min="0" max="100" value="1" id="months"><br>
+            <button class="btn btn-primary" style="padding-top: 10px;" onclick="calculate()">Calculate</button>
+            <h3 id="nam" style="font-weight: bold;"></h3>
+        </div>
+    </div>
+    <script type="text/javascript">
+    //.....challenge  1....//
+        function sho(){
+           var dat=prompt('What Year were you born...Good Friend?');
+           var raj=document.getElementById('flex-box-result');
+           var cal=(2020-dat)*365;
+           var h1=document.createElement('h2');
+           var text=document.createTextNode('You are '+cal+' days old.');
+           h1.appendChild(text);
+           raj.appendChild(h1);
+        }
+        function rese(){
+            
+            document.getElementById('flex-box-result').remove();
+        }
+//.......challenge  2.......//
+        function gen(){
+            var image=document.createElement('img');
+                image.src="img/giphy.gif";
+            var aj=document.getElementById('j');
+                aj.appendChild(image);
+        }
+        function res(){
+            document.getElementById('j').remove();
+        }
+//........challenge  3......//        
+        function game(yourChoice){
+            console.log(yourChoice);
+            var humanchoice,botchoice;
+            humanchoice=yourChoice.id;
+
+            botchoice=numbertochoice(rand());
+            console.log('Computer choice:',botchoice);
+
+            result=decide(humanchoice,botchoice);
+            console.log(result);
+
+            message=finalmsg(result);
+            console.log(message);
+
+            rpsfront(yourChoice.id,botchoice,message);
+        }
+        function rand(){
+            return Math.floor(Math.random()*3);
+        }
+        function numbertochoice(number){
+            return ['rock','paper','scissor'][number];
+        }
+        function decide(yourChoice,botchoice){
+            var rpsdata={
+                'rock':{'scissor':1,'rock':0.5,'paper':0},
+                'paper':{'rock':1,'paper':0.5,'scissor':0},
+                'scissor':{'paper':1,'scissor':0.5,'rock':0}
+            };
+            var yourScore=rpsdata[yourChoice][botchoice];
+            var computerScore=rpsdata[botchoice][yourChoice];
+
+            return [yourScore,computerScore];
+        }
+        function finalmsg([yourScore,computerScore]){
+            if(yourScore===0){
+                return {'message':'You Lost!','color':'red'};
+            }else if(yourScore===0.5){
+                return {'message':'You Tied!','color':'yellow'};
+            }else{
+                return {'message':'You Win!','color':'green'};
+            }
+        }
+        function rpsfront(humanimagechoice,botimagechoice,finalmsg){
+            var imagedata={
+                'rock':document.getElementById('rock').src,
+                'paper':document.getElementById('paper').src,
+                'scissor':document.getElementById('scissor').src
+            }
+            document.getElementById('rock').remove();
+            document.getElementById('paper').remove();
+            document.getElementById('scissor').remove();
+
+            var humandiv=document.createElement('div');
+            var botdiv=document.createElement('div');
+            var messagediv=document.createElement('div');
+
+            humandiv.innerHTML="<img src='"+imagedata[humanimagechoice]+"'height=200 width=200 style='box-shadow:0px 10px 50px rgba(37,50,233,1);'>"
+            messagediv.innerHTML="<h1 style='color: "+finalmsg['color']+"; font-style:150px;padding:50px;'>"+finalmsg['message']+"</h1>"
+            botdiv.innerHTML="<img src='"+imagedata[botimagechoice]+"'height=200 width=200 style='box-shadow:0px 10px 50px rgba(243,38,24,1);'>"
+
+            document.getElementById('imgge').appendChild(humandiv);
+            document.getElementById('imgge').appendChild(messagediv);
+            document.getElementById('imgge').appendChild(botdiv);
+        }
+        //..........Challenge 4..........//
+        function calculate(){
+            //selecting the id's.
+            var amount=document.getElementById('amount').value;
+            console.log(amount);
+            var intrest=document.getElementById('intrest').value;
+            console.log(intrest);
+            var months=document.getElementById('months').value;
+            console.log(months);
+
+            //logic
+            var pay=(amount*months*intrest)/100;
+            //console.log(pay);
+            let app=document.getElementById('nam');
+            app.innerText='Total Amount:'+pay;
+        }
+    </script>
+</body>
+</html>

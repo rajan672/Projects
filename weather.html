@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: aqua;
+            max-height: 100%;
+            background-repeat: no-repeat;
+            font-family: Arial, Helvetica, sans-serif;
+            background-size: cover;
+        }
+        .main{
+            width: 80vh;
+            margin: 50px auto;
+            background-color: rgba(240,248,255,0.6);
+            padding: 10px;
+            text-align: center;
+        }
+        .main>*{
+            margin-bottom: 20px;
+        }
+        input{
+            width: 100%;
+            outline: none;
+            border: none;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: rgba(255,255,255,0.6);
+            height: 40px;
+            color: brown;
+        }
+        .weather-body{
+            color: #582233;
+            padding: 20px;
+            height:100vh ;
+            line-height: 2rem;
+            border-radius: 10px;
+            background-color: rgba(255,255,255,0.6);
+        }
+        .location-d{
+            font-weight: bold;
+        }
+        .weather-details{
+            padding: 5px;
+        }
+        .tem{
+            font-size: 40px;
+            font-weight: 700;
+            margin: 20px 0px;
+            text-shadow:2px 4px rgba(0,0,0,0.3);
+        }
+        .footer{
+            background-color: lawngreen;
+            color: black;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="input-val">
+            <input type="text" id="input-v" placeholder="Enter City Name...">
+        </div>
+        <div class="weather-body">
+            <div class="location-d">
+                <div class="city" id="city">City,Country</div>
+                <div class="date" id="date">Date/Month/Year</div>
+            </div>
+            <div class="weather-details">
+                <div class="tem" id="tem">&deg;C</div>
+                <div class="max-min" id="max-min">min&deg;C/max&deg;C</div>
+                <div class="lon-lat" id="lon-lat">Lon: & Lat:</div>
+                <div class="weather" id="weather">Report</div>
+                <div class="image" id="image"> 
+                    <img src="img\clear.png" alt="" height="20px" width="20px" id="Cimag">
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer"><strong>RajanSah&#169;2020-01-21</strong></footer>
+
+    <script>
+        //api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
+        //eefc44a82fa2313d74df416c3c807fb7
+        var weatherApi={
+            key:"eefc44a82fa2313d74df416c3c807fb7",
+            baseUrl:"http://api.openweathermap.org/data/2.5/weather"
+        }
+        var searchbox=document.getElementById('input-v');
+        //eventlistener
+        searchbox.addEventListener('keypress',(event)=>{
+            if (event.keyCode == 13){
+                console.log(searchbox.value);
+                getWeather(searchbox.value); //calling the getweather function and passing the parameter as inputed value in input tag.
+            }
+        });
+        //get weather report
+        function getWeather(city){
+            fetch(`${weatherApi.baseUrl}?q=${city}&appid=${weatherApi.key}&units=metric`)   //fetching the weatherapi using the api key .
+            .then(weather =>{
+                return weather.json(); //returning the data from api in JSON formate.
+            }).then(showWeather);  //calling the showWeather function.
+        };
+        //show weather report
+        function showWeather(weather){
+            console.log(weather);
+
+            var city= document.getElementById('city'); //selecting a div by id  'city'..
+            city.innerText=`${weather.name},${weather.sys.country}`; //changing the innertext of city using api with ES6 model syntex. //weather.name will provide the name of the city from Api.  //weather.sys.country will provide the name of the country from Api.
+
+            var temprature= document.getElementById('tem');
+            temprature.innerHTML=`${Math.round(weather.main.temp)}&deg;C`; //weather.main.temp will provide the temp. of the searched city.//Math.round will round off the data and give a real number.
+
+            var minmax= document.getElementById('max-min');
+            minmax.innerHTML=`${Math.floor(weather.main.temp_min)}&deg;C (min)/${Math.ceil(weather.main.temp_max)}&deg;C (max)`; //weather.main.temp_max & min will provide the temp. data of maximum & minimum. //math.floor will provide the data in lower round form i.e. 12.56 then 12. //math.ceil will provide like 12.56 then 13.
+
+            var lonlat=document.getElementById('lon-lat');
+            lonlat.innerText=`Lon:${weather.coord.lon} & Lat:${weather.coord.lat}`; //provide the longitude and landitude from the api
+            
+            var report=document.getElementById('weather');
+            report.innerText=`${weather.weather[0].main}`; //in console we will see a array named as 'weather:Array(1)' from which in .main we get the weather report.
+
+            var date= document.getElementById('date');
+            var todayDate= new Date();     // it will provide the today date and time but we only need date not time.so will manage the date.
+            date.innerText=dateManage(todayDate); //calling a function and passing the todaydate variable.
+
+
+        }
+        //date manage
+        function dateManage(dateArg){
+            var months=["Jan","Feb","March","April","May","June","July","August","September","Octuber","Nov","Dec"] //creating an array whic will contain all the months.
+            var year=dateArg.getFullYear(); //getfullyear provide the running year
+            var month=months[dateArg.getMonth()]; //getmonth provide the running month from the months array
+            var dates= dateArg.getDate(); //getdate provide the today date
+            return `${dates} ${month}/${year}`; //returning all the value .
+        }
+    </script>
+</body>
+</html>

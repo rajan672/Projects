@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Potta+One&display=swap" rel="stylesheet">
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: burlywood;
+        }
+        h1{
+            font-size: 50px;
+            color: chocolate;
+            font-weight: bold;
+            font-family: 'Potta One', cursive;
+            text-align: center;
+        }
+        .input-val{
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        input{
+            outline: none;
+            border: none;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 25px;
+            background-color: rgba(255,255,255,0.6);
+            height: 40px;
+            color: brown;
+            font-weight: 600;
+        }
+        .container{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            display: flex;
+            padding: 10px;
+            font-family: 'Potta One', cursive;
+        }
+        .today{
+            margin-top: 320px;
+            margin-left: 350px;
+            display: flex;
+            padding: 10px;
+            font-family: 'Potta One', cursive;
+        }
+        .active{
+            height: 150px;
+            width: 150px;
+            background-color: cornflowerblue;
+            text-align: center;
+            padding: 10px;
+            margin: 25px;
+            border-radius: 10px;
+            box-shadow: 25px 19px 15px 0px rgba(23,124,222,0.79);
+            -webkit-box-shadow: 25px 19px 15px 0px rgba(23,124,222,0.79);
+            -moz-box-shadow: 25px 19px 15px 0px rgba(23,124,222,0.79);
+        }
+        .death{
+            height: 150px;
+            width: 150px;
+            background-color: crimson;
+            margin: 25px;
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 25px 19px 15px 0px rgba(220,20,60,0.79);
+            -webkit-box-shadow: 25px 19px 15px 0px rgba(220,20,60,0.79);
+            -moz-box-shadow: 25px 19px 15px 0px rgba(220,20,60,0.79);
+        }
+        .cases{
+            height: 150px;
+            width: 150px;
+            background-color: brown;
+            margin: 25px;
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 25px 19px 15px 0px rgba(165,42,42,0.79);
+            -webkit-box-shadow: 25px 19px 15px 0px rgba(165,42,42,0.79);
+            -moz-box-shadow: 25px 19px 15px 0px rgba(165,42,42,0.79);
+        }
+        .recover{
+            height: 150px;
+            width: 150px;
+            background-color: darkgoldenrod;
+            margin: 25px;
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 25px 19px 15px 0px rgba(184,134,11,0.79);
+            -webkit-box-shadow: 25px 19px 15px 0px rgba(184,134,11,0.79);
+            -moz-box-shadow: 25px 19px 15px 0px rgba(184,134,11,0.79);
+        }
+        .todaycase{
+            height: 150px;
+            width: 150px;
+            background-color: darkmagenta;
+            margin: 25px;
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 25px 19px 15px 0px rgba(139,0,139,0.75);
+-webkit-box-shadow: 25px 19px 15px 0px rgba(139,0,139,0.75);
+-moz-box-shadow: 25px 19px 15px 0px rgba(139,0,139,0.75);
+        }
+        .todaydeath{
+            height: 150px;
+            width: 150px;
+            background-color: darkred;
+            margin: 25px;
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 25px 19px 15px 0px rgba(139,0,0,0.75);
+-webkit-box-shadow: 25px 19px 15px 0px rgba(139,0,0,0.75);
+-moz-box-shadow: 25px 19px 15px 0px rgba(139,0,0,0.75);
+        }
+        .todayrecover{
+            height: 150px;
+            width: 150px;
+            background-color: green;
+            margin: 25px;
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 25px 19px 15px 0px rgba(0,128,0,0.75);
+-webkit-box-shadow: 25px 19px 15px 0px rgba(0,128,0,0.75);
+-moz-box-shadow: 25px 19px 15px 0px rgba(0,128,0,0.75);
+        }
+        span{
+            font-size: 25px;
+            padding-top: 15px;
+            align-items: center;
+            
+        }
+        .footer{
+            padding-top: 10px;
+            margin-top: 340px;
+            background-color: lawngreen;
+            color: black;
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Live COVID-19 Report</h1> 
+    <div class="input-val">
+        <input type="text" id="input-v" placeholder="Enter City Name...">
+    </div>
+    <div class="container">
+        <div class="active" >Active Cases<br><br><span id="active"></span></div>
+        <div class="death">Total Death<br><br><span id="death"></span></div>
+        <div class="cases">Total Cases<br><br><span id="cases"></span></div>
+        <div class="recover">Recovered Cases<br><br><span id="recover"></span></div>
+    </div>
+    <div class="today">
+        <div class="todaycase">Today Cases<br><br><span id="todaycase"></span></div>
+        <div class="todaydeath">Today Death<br><br><span id="todaydeath"></span></div>
+        <div class="todayrecover">Today Recovered <br><br><span id="todayrecover"></span></div>
+    </div>
+    <footer class="footer"><strong>RajanSah&#169;jan/30/2021</strong></footer>
+    <script>
+         
+         var covidapi={
+             baseUrl:"https://corona.lmao.ninja/v2/countries"
+         }
+         var searchbox=document.getElementById('input-v');
+        //eventlistener
+        searchbox.addEventListener('keypress',(event)=>{
+            if (event.keyCode == 13){
+                console.log(searchbox.value);
+                getdata(searchbox.value)//calling the getweather function and passing the parameter as inputed value in input tag.
+            }
+        });
+
+        function getdata(country){
+            fetch(`${covidapi.baseUrl}/${country}`)
+            .then(covid=>{
+                return covid.json();
+            }).then(show);
+        }; 
+        
+        function show(covid){
+            console.log(covid);
+
+            var active=document.getElementById('active');
+            active.innerText=`${covid.active}`;
+
+            var active=document.getElementById('death');
+            active.innerText=`${covid.deaths}`;
+
+            var active=document.getElementById('cases');
+            active.innerText=`${covid.cases}`;
+
+            var active=document.getElementById('recover');
+            active.innerText=`${covid.recovered}`;
+
+            var active=document.getElementById('todaycase');
+            active.innerText=`${covid.todayCases}`;
+
+            var active=document.getElementById('todaydeath');
+            active.innerText=`${covid.todayDeaths}`;
+
+            var active=document.getElementById('todayrecover');
+            active.innerText=`${covid.todayRecovered}`;
+        }
+
+    </script>
+</body>
+</html>

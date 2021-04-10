@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist</title>
+    <style type="text/css">
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+        .cont{
+            height: 650px;
+        }
+        .todo{
+            padding-top: 50px;
+            text-align: center;
+            font-size: 50px;
+        }
+        .todo>h1>span{
+            color: darkgreen;
+        }
+        .ra{
+            padding-top: 20px;
+        }
+        .ra>input{
+            outline: none;
+            text-align: center;
+            font-size: 30px;
+            border-radius: 2px;
+            padding-left: 10%;
+            margin-left: 35%;
+            color: #582233;
+            border-style: none;
+            border-bottom:1px solid #333;
+        }
+        .ra>button{
+            font-size: 40px;
+            font-weight: bold;
+            color:#d90429;
+            cursor: pointer;
+            border: none;
+        }
+        .ra>button:hover{
+            background-color:#2b2d42 ;
+        }
+        .not{
+            text-align: center;
+        }
+        #div>li{
+            background-color:  #ff9999;
+            font-size: 35px;
+            text-align: left;
+            margin-left: 35%;
+            margin-right: 25%;
+            border-radius: 10px;
+        }
+        #div>li>button>img{
+            padding: 5px;
+            cursor: pointer;
+            font-size: 35px;
+            border-style: none;
+            text-align: right;
+        }
+        .done{
+            text-align: center;
+        }
+        #has>li{
+            background-color:#9d0208 ;
+            font-size: 30px;
+            text-align: left;
+            padding: 20px;
+            margin-left: 35%;
+            margin-right: 25%;
+            border-radius: 10px;
+        }
+        #has>li>button{
+            padding: 5px;
+            cursor: pointer;
+            align-items: right;
+        }
+        #has>li>button,#div>li>button{
+            border-style: none;
+        }
+        @media only screen and (max-width:768px) {
+            .todo{
+            padding-top: 50px;
+            text-align: center;
+            font-size: 30px;
+            }
+            .ra>input{
+            font-size: 25px;
+            border-radius: 10px;
+            padding-left: 10%;
+            margin-left: 20%;
+            background-color: #fca311;
+            border-style: none;
+            border-bottom:3px solid #333;
+            }
+            .ra>button{
+            font-size: 30px;
+            color:#d90429;
+            cursor: pointer;
+            border-radius: 10px;
+            border: none;
+            background-color: #fca311;
+            }
+            #div>li{
+            background-color: cyan;
+            font-size: 25px;
+            text-align: left;
+            padding: 10px;
+            margin-left: 35%;
+            margin-right: 25%;
+            border-radius: 10px;
+            }
+            #has>li{
+            background-color:#9d0208 ;
+            font-size: 25px;
+            text-align: left;
+            padding: 10px;
+            margin-left: 35%;
+            margin-right: 25%;
+            border-radius: 10px;
+        }
+
+        }
+        .footer{
+            padding-top: 10px;
+            margin-top: 340px;
+            background-color: lawngreen;
+            color: black;
+            text-align: center;
+        }
+    </style>
+    <script defer src="https://friconix.com/cdn/friconix.js"> </script>
+</head>
+<body>
+    <div class="cont">
+        <div class="todo">
+            <h1><span>TODO</span><img src="img\to-do-list.png" alt="" height="60px" width="60px">list</h1>
+        </div>
+        <div class="ra">
+            <input type="text " placeholder="Add your task" id="a">
+            <button onclick="r()">Add</button>
+        </div>
+        <div>
+            <ol class="not">
+                <h1>Not Completed</h1>
+                <div id="div">
+                    
+                </div>
+            </ol>
+            <ol class="done">
+                <h1>Completed</h1>
+                <div id="has">
+                    
+                </div>
+            </ol>
+        </div>
+        <footer class="footer"><strong>RajanSah&#169;jan/10/2021</strong></footer>
+    </div>
+</body>
+    
+    <script>
+         function r(){
+            var d=document.getElementById('a').value;
+            var c=document.getElementsByClassName('not');
+                
+            var f=document.getElementsByClassName('done');
+            var li=document.createElement('li');
+            var textAnswer=document.createTextNode(c=d);
+                
+            var checkbtn=document.createElement('button');
+                checkbtn.innerHTML='<h3 style="background-color: chartreuse; color: black ;">Done</h3>';
+            var delbtn=document.createElement('button');
+                delbtn.innerHTML='<h3 style="background-color: maroon; color: black;">Remove</h3>';
+
+            if(d !==''){
+                li.textContent=c;
+                d='';
+                li.appendChild(checkbtn);
+                li.appendChild(delbtn);
+                document.getElementById('div').appendChild(li);
+            }
+            checkbtn.addEventListener('click',function(){
+                const parent=this.parentNode;
+                parent.remove();
+                document.getElementById('has').appendChild(parent);
+                checkbtn.style.display='none';
+            });
+            delbtn.addEventListener('click',function(){
+                const parent=this.parentNode;
+                parent.remove();
+            });
+
+         }
+    </script>
+
+</html>
